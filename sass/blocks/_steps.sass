@@ -1,0 +1,92 @@
+.steps
+  padding-top: 32px
+  padding-bottom: 32px
+  &-block
+    display: flex
+    border-radius: 16px
+    flex-direction: column
+    border: 1px solid #D6D9E0
+    &__heading
+      font-weight: 700
+      font-size: 32px
+      line-height: 40px
+      color: #000000
+      font-family: "Inter", sans-serif
+      margin-bottom: 25px
+      padding: 32px 0px 0px 32px
+    &__items
+      display: flex
+      flex-direction: row
+      justify-content: space-between
+      align-items: center
+      padding: 0px 32px 32px 32px
+    &__item
+      display: flex
+      flex-direction: column
+      position: relative
+      justify-content: flex-start
+      width: calc(100%/ 3)
+      height: 191px
+      &:not(:last-child)::before
+        content: ""
+        position: absolute
+        left: 85px
+        top: calc( 85px / 2 )
+        width: calc(100% - 85px)
+        height: 1px
+        border-bottom: 1px dashed #D6d9e0
+    &__number
+      position: relative
+      user-select: none
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 85px
+      height: 85px 
+      font-family: "Inter", sans-serif
+      font-weight: 700
+      font-size: 32px
+      font-weight: 700
+      line-height: 40px
+      color: #fff
+      z-index: 0
+      &::before
+        content: ""
+        position: absolute
+        top: 50%
+        left: 50%
+        width: 65px
+        height: 65px
+        transform: translate(-50%, -50%)
+        background-color: #009846
+        border-radius: 50%
+        z-index: -1
+      &::after
+        content: ""
+        position: absolute
+        top: 50%
+        left: 50%
+        width: 85px
+        height: 85px
+        transform: translate(-50%, -50%)
+        background-color: rgba(0, 152, 70, 0.24)
+        border-radius: 50%
+        z-index: -2
+    &__title
+      display: inline-block
+      font-size: 20px
+      line-height: 26px
+      font-family: "Inter", sans-serif
+      font-weight: 600
+      color: #162136
+      letter-spacing: -0.16px
+      margin-top: 8px
+      max-width: 100%
+      width: 280px
+    &__subtitle
+      color: #687082
+      font-size: 16px
+      line-height: 24px
+      font-family: "Inter", sans-serif
+      font-weight: 400
+      width: 70%

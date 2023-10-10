@@ -1,0 +1,37 @@
+.questions
+  &-block
+      border: 1px solid #D6D9E0
+      border-radius: 16px
+      &__line
+        margin-left: 32px
+        display: block
+        height: 1px
+        width: calc( 100% - 32px )
+        background-color: #EAEAEA
+      &__item
+        display: flex
+        flex-direction: column
+        padding: 0px 32px 0px 32px
+      &__heading
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        align-items: center
+        padding: 30px 0px 30px 0px
+        cursor: pointer
+        span
+          font-family: "Inter", sans-serif
+          font-weight: 600
+          font-size: 20px
+          line-height: 26px
+          color: #162136
+      &__info 
+        display: none
+        transition: 0.4s
+        p
+          font-family: "Inter", sans-serif
+          font-size: 16px
+          line-height: 24px
+          color: #162136
+          font-weight: 400
+          padding-bottom: 28px
