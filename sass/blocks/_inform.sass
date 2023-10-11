@@ -77,6 +77,16 @@
       padding-top: 20px
       &.item
         margin-bottom: 25px
+    &__informal
+      width: 100%
+      display: flex
+      flex-direction: row
+      justify-content: space-between
+      border-bottom: 1px solid #EAEAEA
+      padding-bottom: 15px
+      padding-top: 20px
+      &.item
+        margin-bottom: 25px
     &__head
       font-family: "Inter", sans-serif
       font-weight: 600
@@ -84,6 +94,22 @@
       line-height: 24px
       color: #162136
       width: 50%
+      display: block
+    &__h
+      font-family: "Inter", sans-serif
+      font-weight: 600
+      font-size: 16px
+      line-height: 24px
+      color: #162136
+      width: 100%
+      display: block
+    &__s
+      font-family: "Inter", sans-serif
+      font-weight: 400
+      font-size: 16px
+      line-height: 24px
+      color: #162136
+      width: 100%
       display: block
     &__srok
       font-family: "Inter", sans-serif
@@ -96,9 +122,8 @@
       &.small
         width: 20%
       &.big
-        width: 70%
+        width: 40%
     &__informtext
-      width: 40%
       display: block
     &__treb
       padding: 32px
@@ -156,6 +181,7 @@
   .inform
     &-block
       &__menu
+        padding: 0px 16px 0px 16px
         overflow: auto
         position: relative
         white-space: nowrap
@@ -196,9 +222,13 @@
           object-fit: contain
       &__content.scroll
         overflow: auto
+      &__informal
+        flex-direction: column
+      &__h
+        margin-bottom: 10px
 
 
-@media(max-width: 650px)
+@media(max-width: 850px)
   .inform
     &-block
       &__bitem
@@ -224,10 +254,12 @@
       &__head
         width: 70%
       &__stavka
-        padding: 16px
+        padding: 0px 16px 16px 0px
         overflow: auto
         position: relative
       &__head
+        padding-left: 16px
+        padding-top: 16px
         position: sticky
         left: 0px
         top: 0px
@@ -244,6 +276,8 @@
           left: 0
           width: 200px
           margin: 0
+          background-color: #fff
+          padding-left: 16px
         &.small
           width: 120px
           margin-left: 50px
@@ -251,7 +285,15 @@
       &__condition
         width: max-content
   .condition1
+    padding-left: 16px
+    height: 60px
+    margin-bottom: 0
     width: 200px
+    height: 60px
+    position: sticky
+    top: 0
+    left: 0
+    background-color: #fff
   .condition
     width: 120px
     margin-left: 50px
