@@ -10,9 +10,10 @@ questions.forEach(question => {
     });
 });
 
+
 const menuLinks = document.querySelectorAll('.menu-link');
 const contentBlocks = document.querySelectorAll('.inform-block__content');
-const greenLines = document.querySelectorAll('.green-line'); // Выберите все зеленые линии
+const menuItems = document.querySelectorAll('.menu-item'); // Выберите все элементы меню
 
 menuLinks.forEach((link, index) => {
   link.addEventListener('click', (e) => {
@@ -26,15 +27,14 @@ menuLinks.forEach((link, index) => {
     const targetBlock = document.getElementById(targetId);
     if (targetBlock) {
       targetBlock.classList.add('active');
-      
-      // Переместите зеленую линию под активный заголовок
-      greenLines.forEach((line, i) => {
-        if (i === index) {
-          line.style.transform = 'scaleX(1)';
-        } else {
-          line.style.transform = 'scaleX(0)';
-        }
+
+      // Уберите класс "active" у всех элементов меню
+      menuItems.forEach((item) => {
+        item.classList.remove('active');
       });
+
+      // Добавьте класс "active" к текущему элементу меню
+      menuItems[index].classList.add('active');
     }
   });
 });

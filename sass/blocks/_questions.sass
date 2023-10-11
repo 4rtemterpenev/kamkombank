@@ -1,7 +1,10 @@
 .questions
+  border: 1px solid #D6D9E0
+  width: 1200px
+  margin: 32px auto
+  border-radius: 16px
+  box-shadow: 0px 4px 8px 0px #00000014
   &-block
-      border: 1px solid #D6D9E0
-      border-radius: 16px
       &__line
         margin-left: 32px
         display: block
@@ -35,3 +38,15 @@
           color: #162136
           font-weight: 400
           padding-bottom: 28px
+
+@media(max-width: 1200px)
+  .questions
+    width: 100%
+
+@media(max-width: 500px)
+  .questions
+    &-block
+      &__heading span
+        width: 85%
+      &__item
+        padding: 0px 16px 0px 16px

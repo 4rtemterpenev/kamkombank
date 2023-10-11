@@ -1,9 +1,10 @@
 .calc
-  padding-top: 32px
-  padding-bottom: 32px
+  border: 1px solid #D6D9E0
+  box-shadow: 0px 4px 8px 0px #00000014
+  width: 1200px
+  margin: 32px auto
+  border-radius: 16px
   &-block
-    border: 1px solid #D6D9E0
-    border-radius: 16px
     &__main
       padding: 0px 32px 32px 32px
     &__summ
@@ -103,6 +104,8 @@
     text-align: start
   &:last-child
     text-align: end
+  &.visible
+    display: none
 .res
   padding: 24px
   background-color: #F1F1F3
@@ -138,3 +141,54 @@
     line-height: 24px
 #calculateButton
   display: none
+
+
+@media(max-width:1200px)
+  .calc
+    width: 100%
+
+@media(max-width: 1050px)
+  .scale-value
+    width: 25%
+    &.hiden
+      display: none
+  .term-value
+    width: 20%
+    &.hiden
+      display: none
+    &.visible
+      display: block
+@media(max-width: 800px)
+  .calc
+    width: 100%
+    &-block
+      padding: 0px 16px 16px 16px
+      &__main
+        padding: 0
+      &__checkbox
+        width: 100%
+  .wrap
+    width: 100%
+  .res
+    width: 100%
+
+@media(max-width: 500px)
+  .term-value
+    font-size: 14px
+    &.hide
+      display: none
+  .scale-value
+    font-size: 14px
+  .result-value
+    font-size: 28px
+@media(max-width: 375px)
+  .result-value
+    font-size: 26px
+@media(max-width: 340px)
+  .result-value
+    font-size: 24px
+  .result-row
+    margin-right: 5px
+  .divider
+    margin-right: 10px
+    
