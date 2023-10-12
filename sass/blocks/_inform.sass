@@ -178,15 +178,20 @@
     width: max-content
   .menu-link
     width: 100%
+  .menu-item.active 
+    &::after 
+      transform: scaleX(1) // Показываем зеленую линию под активным элементом
+      transform: translate(0,5px)
   .inform
     &-block
       &__menu
         padding: 0px 16px 0px 16px
-        overflow: auto
+        overflow-x: auto
         position: relative
         white-space: nowrap
         -ms-overflow-style: none
         scrollbar-width: none
+        height: 32px
         &::-webkit-scrollbar
           width: 0
           height: 0
