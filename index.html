@@ -338,7 +338,7 @@
             <div id="slider-container" class="slider-container">
               <label for="numberSlider" class="calc-block__summ">Сколько вам нужно</label>
               <input type="text" id="numberInput" oninput="updateSliderFromInput(this)" class="calc-block__summinput"
-                value="1 010 000">
+                value="1 010 000" min="50000">
               <div class="slider-wrapper">
                 <input type="range" id="numberSlider" min="50000" max="2000000" step="10000"
                   oninput="updateInputFromSlider(this)" class="styled-slider slider-progress">
@@ -347,7 +347,7 @@
                   <span class="scale-value hiden" style="left:9%">250 000 ₽</span>
                   <span class="scale-value" style="left:22%">500 000 ₽</span>
                   <span class="scale-value" style="left:48%">1 млн ₽</span>
-                  <span class="scale-value hiden" style="left:73%">1.5 млн ₽</span>
+                  <span class="scale-value vis" style="left:73%">1.5 млн ₽</span>
                   <span class="scale-value" style="right:0%">2 млн ₽</span>
                 </div>
               </div>
@@ -355,20 +355,20 @@
 
             <div class="term-container">
               <label for="loanTermRange" class="calc-block__summ srok">На срок</label>
-              <input type="text" id="loanTerm" readonly class="calc-block__summinput" value="3 года">
+              <input type="text" id="loanTerm" readonly class="calc-block__summinput">
               <div class="slider-wrapper">
-                <input type="range" id="loanTermRange" min="6" max="84" step="1" oninput="updateLoanTermInput()"
+                <input type="range" id="loanTermRange" value="1" min="1" max="8" step="1" oninput="updateLoanTermInput()"
                   class="styled-slider slider-progress">
+                  <!-- <input type="range" id="loanTermRange" value="6" min="6" max="84" step="6" oninput="updateLoanTermInput()"
+                  class="styled-slider slider-progress"> -->
                 <div class="term-scale">
                   <span class="term-value" data-months="6" style="left:0%">6 мес</span>
-                  <span class="term-value hiden" data-months="12" style="left:8%">1 год</span>
-                  <span class="term-value hiden" data-months="24" style="left:23%">2 года</span>
-                  <span class="term-value visible" data-months="30" style="left:30%">2.5 года</span>
-                  <span class="term-value hiden" data-months="36" style="left:38%">3 года</span>
-                  <span class="term-value" data-months="48" style="left:53%">4 года</span>
-                  <span class="term-value hiden" data-months="60" style="left:68%">5 лет</span>
-                  <span class="term-value visible hide" data-months="66" style="left:75%">5.5 лет</span>
-                  <span class="term-value hiden" data-months="72" style="left:83%">6 лет</span>
+                  <span class="term-value hiden" data-months="12" style="left:14%">1 год</span>
+                  <span class="term-value" data-months="24" style="left:28%">2 года</span>
+                  <span class="term-value hiden" data-months="36" style="left:42%">3 года</span>
+                  <span class="term-value" data-months="48" style="left:56%">4 года</span>
+                  <span class="term-value hiden" data-months="60" style="left:70%">5 лет</span>
+                  <span class="term-value hiden" data-months="72" style="left:84%">6 лет</span>
                   <span class="term-value" data-months="84" style="right:0;">7 лет</span>
                 </div>
               </div>
@@ -384,7 +384,8 @@
               <button id="calculateButton">Рассчитать</button>
             </div>
 
-            <div id="result"></div>
+            <div id="result">
+            </div>
 
           </div>
         </div>

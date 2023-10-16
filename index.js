@@ -42,7 +42,12 @@ menuLinks.forEach((link, index) => {
 // Обработчик клика на мерной шкале срока кредита
 function formatNumber(input) {
     // Удалите все нечисловые символы и разделите число на тысячи
-    let value = input.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    let value = input.value.replace(/\D/g, "")
+    if (parseInt(value) < 10000){
+        input.value = value;
+        return;
+    }
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     input.value = value;
 }
 // Функция для установки ползунка в заданное значение
@@ -67,6 +72,37 @@ function setLoanTerm(termInMonths) {
     loanTermRange.value = termInMonths;
     updateLoanTermInput(); // Вызываем функцию для обновления инпута срока кредита
 }
+// function toggleSteps(element){
+//     var step = Number(element.value);
+//     console.log(`v ${element.value}, s: ${element.step}`)
+//     if (step >= 12){
+//         element.step = 12;
+//     } else {
+//         element.step = 6;
+//     }
+
+// }
+
+
+
+// var rangeInput = document.getElementById("loanTermRange");
+// rangeInput.addEventListener("input", function(){
+//     console.log(`v ${rangeInput.value}, s: ${rangeInput.step}`)
+//     if (Number(rangeInput.value) == 6){
+//         // console.log(typeof rangeInput.value)
+//         // console.log(typeof rangeInput.step)
+//         rangeInput.step =  6;
+
+//     } else if(Number(rangeInput.value) == 12) {
+//         console.log('adad')
+//         rangeInput.step = 6;
+//     } else if(Number(rangeInput.value) > 12) {
+//         console.log('ewfef')
+//         rangeInput.step = 12;
+//     }
+// })
+
+
 
 function updateSliderFromInput(input) {
     // Обновляем положение ползунка на основе значения поля ввода
@@ -78,8 +114,32 @@ function updateSliderFromInput(input) {
 function updateLoanTermInput() {
     const loanTerm = document.getElementById("loanTermRange").value;
     const loanTermInput = document.getElementById("loanTerm");
+    var asd = " ";
 
-    const termString = formatLoanTerm(loanTerm);
+    if (loanTerm == "1"){
+        asd = "6";
+    } else if(loanTerm == "2"){
+        asd = "12"
+    } else if(loanTerm == "3"){
+        asd = "24"
+    }
+    else if(loanTerm == "4"){
+        asd = "36"
+    }
+    else if(loanTerm == "5"){
+        asd = "48"
+    }
+    else if(loanTerm == "6"){
+        asd = "60"
+    }
+    else if(loanTerm == "7"){
+        asd = "72"
+    }
+    else if(loanTerm == "8"){
+        asd = "84"
+    }
+
+    const termString = formatLoanTerm(asd);
     loanTermInput.value = termString;
 }
 
@@ -160,9 +220,9 @@ const numberInput = document.getElementById("numberInput");
 // Обработчик события для поля ввода
 numberInput.addEventListener("input", function () {
     // Получаем значение суммы кредита из поля ввода и удаляем разделители тысяч
-    let loanAmount = parseFloat(this.value.replace(/\s+/g, ''));
+    let loanAmount = parseInt(this.value.replace(/\s+/g, ''));
 
-    // Ограничиваем значение суммы кредита между 1 и 5000000
+    // Ограничиваем значение суммы кредита между 1 и 2000000
     if (loanAmount < 1) {
         loanAmount = 50000;
     } else if (loanAmount > 2000000) {
@@ -177,7 +237,6 @@ numberInput.addEventListener("input", function () {
 
 
     calculateProgress("numberSlider", loanAmount );
-
     // Вызываем функцию formatNumber для форматирования с разделителями тысяч
     formatNumber(numberInput);
     // Обновляем расчет кредита
@@ -202,27 +261,75 @@ numberInput.addEventListener("input", function () {
 //     loanAmountInput.value = formatNumber(inputAmount);
 // });
 
+numberInput.addEventListener("focusout", function(){
+    let loanAmount = parseInt(this.value.replace(/\s+/g, ''));
+
+    // Ограничиваем значение суммы кредита между 1 и 2000000
+    if (loanAmount < 50000){
+        loanAmount = 50000;
+    }
+
+    numberInput.value = loanAmount;
+
+    // Устанавливаем значение ползунка в соответствии с новой суммой кредита
+    numberSlider.value = loanAmount;
+
+
+    calculateProgress("numberSlider", loanAmount );
+    // Вызываем функцию formatNumber для форматирования с разделителями тысяч
+    formatNumber(numberInput);
+    // Обновляем расчет кредита
+    calculateLoan();
+})
+
 function calculateLoan() {
     // Получаем значение суммы кредита
     let loanAmountInput = document.getElementById("numberInput");
     let loanAmount = parseFloat(loanAmountInput.value.replace(/\s+/g, ''));
 
-    // Ограничиваем сумму кредита до 2000000
+    // // Ограничиваем сумму кредита до 2000000
     const maxLoanAmount = 2000000;
-    if (loanAmount > maxLoanAmount) {
-        loanAmount = maxLoanAmount;
-        loanAmountInput.value = formatNumber(maxLoanAmount);
-    }
+    // if (loanAmount > maxLoanAmount) {
+    //     loanAmount = maxLoanAmount;
+    //     console.log('asd')
 
-    // Если сумма кредита меньше 50000, приравниваем ее к 50000
+    //     loanAmountInput.value = formatNumber(maxLoanAmount);
+    // }
+
+
+
+    // // Если сумма кредита меньше 50000, приравниваем ее к 50000
     const minLoanAmount = 50000;
-    if (loanAmount < minLoanAmount) {
-        loanAmount = minLoanAmount;
-        loanAmountInput.value = formatNumber(minLoanAmount);
-    }
+    // if (loanAmount < minLoanAmount) {
+    //     loanAmount = minLoanAmount;
+    //     loanAmountInput.value = formatNumber(minLoanAmount);
+    // }
 
     // Получаем значение срока кредита в месяцах
-    const loanTerm = parseFloat(document.getElementById("loanTermRange").value);
+    const loanTermF = document.getElementById("loanTermRange").value;
+    var loanTerm = 0.0;
+    if (loanTermF == "1"){
+        loanTerm = parseFloat("6");
+    } else if(loanTermF == "2"){
+        loanTerm = parseFloat("12");
+    } else if(loanTermF == "3"){
+        loanTerm = parseFloat("24");
+    }
+    else if(loanTermF == "4"){
+        loanTerm = parseFloat("36");
+    }
+    else if(loanTermF == "5"){
+        loanTerm = parseFloat("48");
+    }
+    else if(loanTermF == "6"){
+        loanTerm = parseFloat("60");
+    }
+    else if(loanTermF == "7"){
+        loanTerm = parseFloat("72");
+    }
+    else if(loanTermF == "8"){
+        loanTerm = parseFloat("84");
+    }
 
     // Получаем значение свитчера для страхования
     const insuranceSwitch = document.getElementById("insuranceSwitch");
@@ -255,7 +362,7 @@ function calculateLoan() {
 </div>
 </div>
 <div class="hero-block__btn mes">
-<a href="https://brainysoft.ru/" target="_blank" class="result-button">Оставить заявку</a>
+<button type="submit" onclick="window.open('https://w3docs.com', '_blank');"  class="result-button" ${loanAmount < 50000 ?  'disabled' : ''} ${loanAmount < 50000 ?  'style="background-color: #00612d"' : 'style="background-color: #009846"'} id="submitButton">Оставить заявку</button>
 </div>
 </div>
 `;
@@ -281,20 +388,15 @@ document.getElementById("insuranceSwitch").addEventListener("change", function()
     calculateLoan(); // Пересчитываем кредит при изменении свитчера
 });
 
-// Функция для обновления значения суммы кредита из ползунка
-function updateInputFromSlider(slider) {
-    const inputValue = document.getElementById("numberInput");
-    inputValue.value = slider.value;
-    formatNumber(inputValue);
-}
+
 
 // Функция для обновления значения срока кредита в инпуте
-function updateLoanTermInput() {
-    const loanTerm = document.getElementById("loanTermRange").value;
-    const loanTermInput = document.getElementById("loanTerm");
-    const termString = formatLoanTerm(loanTerm);
-    loanTermInput.value = termString;
-}
+// function updateLoanTermInput() {
+//     const loanTerm = document.getElementById("loanTermRange").value;
+//     const loanTermInput = document.getElementById("loanTerm");
+//     const termString = formatLoanTerm(loanTerm);
+//     loanTermInput.value = termString;
+// }
 
 // Обновляем значения при загрузке страницы
 updateLoanTermInput();
@@ -318,7 +420,6 @@ calculateLoan();
 
 function calculateProgress( id, value = undefined){
         let e = document.getElementById(id)
-        console.log(id);
         e.style.setProperty('--value', value ? value : e.value);
         e.style.setProperty('--min', e.min == '' ? '0' : e.min);
         e.style.setProperty('--max', e.max == '' ? '100' : e.max);
