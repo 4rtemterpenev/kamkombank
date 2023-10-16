@@ -362,7 +362,7 @@ function calculateLoan() {
 </div>
 </div>
 <div class="hero-block__btn mes">
-<button type="submit" onclick="window.open('https://w3docs.com', '_blank');"  class="result-button" ${loanAmount < 50000 ?  'disabled' : ''} ${loanAmount < 50000 ?  'style="background-color: #00612d"' : 'style="background-color: #009846"'} id="submitButton">Оставить заявку</button>
+<button type="submit" onclick="window.open('https://brainysoft.ru/', '_blank');"  class="result-button" ${loanAmount < 50000 ?  'disabled' : ''} ${loanAmount < 50000 ?  'style="background-color: #00612d"' : 'style="background-color: #009846"'} id="submitButton">Оставить заявку</button>
 </div>
 </div>
 `;
