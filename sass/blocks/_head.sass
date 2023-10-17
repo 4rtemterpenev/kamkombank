@@ -20,6 +20,10 @@
       font-weight: 400
     &__icon
       margin-right: 10px
+    &__logo
+      width: 260px
+      img
+        width: 100%
 
 @media(max-width: 650px)
   .head
@@ -29,11 +33,17 @@
         display: flex
         align-items: center
         img
-          width: 100%
+          width: 150px
           object-fit: contain
-@media(max-width: 330px)
+        div
+          display: flex
+          justify-content: center
+          align-items: center
+@media(max-width: 340px)
   .head
     &-block
       &__logo
         width: 108px
         height: 19px
+        img
+          width: 100px
