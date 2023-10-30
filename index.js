@@ -16,34 +16,34 @@ const contentBlocks = document.querySelectorAll('.inform-block__content');
 const menuItems = document.querySelectorAll('.menu-item'); // Выберите все элементы меню
 
 menuLinks.forEach((link, index) => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetId = e.target.getAttribute('data-target');
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = e.target.getAttribute('data-target');
 
-    contentBlocks.forEach((block) => {
-      block.classList.remove('active');
+        contentBlocks.forEach((block) => {
+            block.classList.remove('active');
+        });
+
+        const targetBlock = document.getElementById(targetId);
+        if (targetBlock) {
+            targetBlock.classList.add('active');
+
+            // Уберите класс "active" у всех элементов меню
+            menuItems.forEach((item) => {
+                item.classList.remove('active');
+            });
+
+            // Добавьте класс "active" к текущему элементу меню
+            menuItems[index].classList.add('active');
+        }
     });
-
-    const targetBlock = document.getElementById(targetId);
-    if (targetBlock) {
-      targetBlock.classList.add('active');
-
-      // Уберите класс "active" у всех элементов меню
-      menuItems.forEach((item) => {
-        item.classList.remove('active');
-      });
-
-      // Добавьте класс "active" к текущему элементу меню
-      menuItems[index].classList.add('active');
-    }
-  });
 });
 
 // Обработчик клика на мерной шкале срока кредита
 function formatNumber(input) {
     // Удалите все нечисловые символы и разделите число на тысячи
     let value = input.value.replace(/\D/g, "")
-    if (parseInt(value) < 10000){
+    if (parseInt(value) < 10000) {
         input.value = value;
         return;
     }
@@ -116,26 +116,26 @@ function updateLoanTermInput() {
     const loanTermInput = document.getElementById("loanTerm");
     var asd = " ";
 
-    if (loanTerm == "1"){
+    if (loanTerm == "1") {
         asd = "6";
-    } else if(loanTerm == "2"){
+    } else if (loanTerm == "2") {
         asd = "12"
-    } else if(loanTerm == "3"){
+    } else if (loanTerm == "3") {
         asd = "24"
     }
-    else if(loanTerm == "4"){
+    else if (loanTerm == "4") {
         asd = "36"
     }
-    else if(loanTerm == "5"){
+    else if (loanTerm == "5") {
         asd = "48"
     }
-    else if(loanTerm == "6"){
+    else if (loanTerm == "6") {
         asd = "60"
     }
-    else if(loanTerm == "7"){
+    else if (loanTerm == "7") {
         asd = "72"
     }
-    else if(loanTerm == "8"){
+    else if (loanTerm == "8") {
         asd = "84"
     }
 
@@ -236,7 +236,7 @@ numberInput.addEventListener("input", function () {
     numberSlider.value = loanAmount;
 
 
-    calculateProgress("numberSlider", loanAmount );
+    calculateProgress("numberSlider", loanAmount);
     // Вызываем функцию formatNumber для форматирования с разделителями тысяч
     formatNumber(numberInput);
     // Обновляем расчет кредита
@@ -261,11 +261,11 @@ numberInput.addEventListener("input", function () {
 //     loanAmountInput.value = formatNumber(inputAmount);
 // });
 
-numberInput.addEventListener("focusout", function(){
+numberInput.addEventListener("focusout", function () {
     let loanAmount = parseInt(this.value.replace(/\s+/g, ''));
 
     // Ограничиваем значение суммы кредита между 1 и 2000000
-    if (loanAmount < 50000){
+    if (loanAmount < 50000) {
         loanAmount = 50000;
     }
 
@@ -275,13 +275,25 @@ numberInput.addEventListener("focusout", function(){
     numberSlider.value = loanAmount;
 
 
-    calculateProgress("numberSlider", loanAmount );
+    calculateProgress("numberSlider", loanAmount);
     // Вызываем функцию formatNumber для форматирования с разделителями тысяч
     formatNumber(numberInput);
     // Обновляем расчет кредита
     calculateLoan();
 })
 
+let resultUrl = ""
+if (document.referrer) {
+    let urlArray = new URL(document.referrer).hostname.split(".");
+    if (urlArray.length == 2) {
+        resultUrl = urlArray[0]
+    } else if (urlArray.length == 3) {
+        resultUrl = urlArray[1]
+    } else {
+        let _ = urlArray.pop()
+        resultUrl = urlArray.join(".")
+    }
+}
 function calculateLoan() {
     // Получаем значение суммы кредита
     let loanAmountInput = document.getElementById("numberInput");
@@ -289,45 +301,35 @@ function calculateLoan() {
 
     // // Ограничиваем сумму кредита до 2000000
     const maxLoanAmount = 2000000;
-    // if (loanAmount > maxLoanAmount) {
-    //     loanAmount = maxLoanAmount;
-    //     console.log('asd')
-
-    //     loanAmountInput.value = formatNumber(maxLoanAmount);
-    // }
-
 
 
     // // Если сумма кредита меньше 50000, приравниваем ее к 50000
     const minLoanAmount = 50000;
-    // if (loanAmount < minLoanAmount) {
-    //     loanAmount = minLoanAmount;
-    //     loanAmountInput.value = formatNumber(minLoanAmount);
-    // }
+
 
     // Получаем значение срока кредита в месяцах
     const loanTermF = document.getElementById("loanTermRange").value;
     var loanTerm = 0.0;
-    if (loanTermF == "1"){
+    if (loanTermF == "1") {
         loanTerm = parseFloat("6");
-    } else if(loanTermF == "2"){
+    } else if (loanTermF == "2") {
         loanTerm = parseFloat("12");
-    } else if(loanTermF == "3"){
+    } else if (loanTermF == "3") {
         loanTerm = parseFloat("24");
     }
-    else if(loanTermF == "4"){
+    else if (loanTermF == "4") {
         loanTerm = parseFloat("36");
     }
-    else if(loanTermF == "5"){
+    else if (loanTermF == "5") {
         loanTerm = parseFloat("48");
     }
-    else if(loanTermF == "6"){
+    else if (loanTermF == "6") {
         loanTerm = parseFloat("60");
     }
-    else if(loanTermF == "7"){
+    else if (loanTermF == "7") {
         loanTerm = parseFloat("72");
     }
-    else if(loanTermF == "8"){
+    else if (loanTermF == "8") {
         loanTerm = parseFloat("84");
     }
 
@@ -347,6 +349,11 @@ function calculateLoan() {
         monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
     }
 
+    let referrer = document.referrer
+    if (referrer == undefined) {
+        referrer = NaN;
+    }
+
     // Формируем строку с результатом
     let resultString = `
     <div class="res">
@@ -362,7 +369,7 @@ function calculateLoan() {
 </div>
 </div>
 <div class="hero-block__btn mes">
-<button type="submit" onclick="window.open('https://brainysoft.ru/', '_blank');"  class="result-button" ${loanAmount < 50000 ?  'disabled' : ''} ${loanAmount < 50000 ?  'style="background-color: #00612d"' : 'style="background-color: #009846"'} id="submitButton">Оставить заявку</button>
+<button type="submit" onclick="window.open('https://lk.kamkombank.ru/start/credit?amount=${loanAmount}&period=${loanTerm}&utm_source=${resultUrl}', '_blank');"  class="result-button" ${loanAmount < 50000 ? 'disabled' : ''} ${loanAmount < 50000 ? 'style="background-color: #00612d"' : 'style="background-color: #009846"'} id="submitButton">Оставить заявку</button>
 </div>
 </div>
 `;
@@ -372,19 +379,19 @@ function calculateLoan() {
     resultElement.innerHTML = resultString;
 }
 // Обработчик события input для ползунка суммы кредита
-document.getElementById("numberSlider").addEventListener("input", function() {
+document.getElementById("numberSlider").addEventListener("input", function () {
     updateInputFromSlider(this); // Обновляем поле ввода суммы кредита
     calculateLoan(); // Пересчитываем кредит
 });
 
 // Обработчик события input для ползунка срока кредита
-document.getElementById("loanTermRange").addEventListener("input", function() {
+document.getElementById("loanTermRange").addEventListener("input", function () {
     updateLoanTermInput(); // Обновляем поле ввода срока кредита
     calculateLoan(); // Пересчитываем кредит
 });
 
 // Обработчик события change для свитчера страхования
-document.getElementById("insuranceSwitch").addEventListener("change", function() {
+document.getElementById("insuranceSwitch").addEventListener("change", function () {
     calculateLoan(); // Пересчитываем кредит при изменении свитчера
 });
 
@@ -418,14 +425,14 @@ document.getElementById("numberSlider").addEventListener("input", function () {
 calculateLoan();
 
 
-function calculateProgress( id, value = undefined){
-        let e = document.getElementById(id)
-        e.style.setProperty('--value', value ? value : e.value);
-        e.style.setProperty('--min', e.min == '' ? '0' : e.min);
-        e.style.setProperty('--max', e.max == '' ? '100' : e.max);
-        e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+function calculateProgress(id, value = undefined) {
+    let e = document.getElementById(id)
+    e.style.setProperty('--value', value ? value : e.value);
+    e.style.setProperty('--min', e.min == '' ? '0' : e.min);
+    e.style.setProperty('--max', e.max == '' ? '100' : e.max);
+    e.addEventListener('input', () => e.style.setProperty('--value', e.value));
 }
 
 
-calculateProgress(id="numberSlider")
-calculateProgress(id="loanTermRange");
+calculateProgress(id = "numberSlider")
+calculateProgress(id = "loanTermRange");
