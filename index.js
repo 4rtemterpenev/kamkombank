@@ -281,6 +281,10 @@ numberInput.addEventListener("focusout", function () {
     // Обновляем расчет кредита
     calculateLoan();
 })
+function roundUp(num, precision) {
+    precision = Math.pow(10, precision)
+    return Math.ceil(num * precision) / precision
+  }
 
 let resultUrl = ""
 if (document.referrer) {
@@ -337,8 +341,7 @@ function calculateLoan() {
     const insuranceSwitch = document.getElementById("insuranceSwitch");
 
     // Определяем годовую процентную ставку в зависимости от наличия страхования
-    const annualInterestRate = insuranceSwitch.checked ? 0.17 : 0.27;
-
+    const annualInterestRate = insuranceSwitch.checked ? 0.175 : 0.275;
     // Рассчитываем ежемесячный платеж по кредиту, используя ограниченную сумму
     const monthlyInterestRate = annualInterestRate / 12;
     const numberOfPayments = loanTerm;
@@ -365,7 +368,7 @@ function calculateLoan() {
 <div class="divider"></div>
 <div class="result-row">
     <div class="result-label interest-rate">Процентная ставка:</div>
-    <div class="result-value interest-rate">${(annualInterestRate * 100)}%</div>
+    <div class="result-value interest-rate">${(Math.trunc(  (annualInterestRate * 100) * 10 ) / 10 )}%</div>
 </div>
 </div>
 <div class="hero-block__btn mes">
@@ -373,7 +376,7 @@ function calculateLoan() {
 </div>
 </div>
 `;
-
+console.log(loanAmount, loanTerm, resultUrl)
     // Выводим результат
     const resultElement = document.getElementById("result");
     resultElement.innerHTML = resultString;
