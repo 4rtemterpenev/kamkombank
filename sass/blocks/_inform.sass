@@ -87,6 +87,7 @@
       border-bottom: 1px solid #EAEAEA
       padding-bottom: 15px
       padding-top: 20px
+      align-items: center
       &.item
         margin-bottom: 25px
     &__head
@@ -97,6 +98,8 @@
       color: #162136
       width: 50%
       display: block
+      &.client
+        margin-top: 20px
     &__h
       font-family: "Inter", sans-serif
       font-weight: 600
@@ -122,9 +125,9 @@
       width: 100%
       display: block
       &.small
-        width: 20%
+        width: 50%
       &.big
-        width: 40%
+        width: 50%
     &__informtext
       display: block
     &__treb
@@ -265,14 +268,10 @@
         width: 70%
       &__stavka
         padding: 0px 16px 16px 0px
-        overflow: auto
-        position: relative
+        overflow: hidden
       &__head
         padding-left: 16px
         padding-top: 16px
-        position: sticky
-        left: 0px
-        top: 0px
         &.client
           width: 90%
       &__inform
@@ -281,9 +280,6 @@
         width: 200px
       &__srok
         &.big
-          position: sticky
-          z-index: 10000
-          left: 0
           width: 200px
           margin: 0
           background-color: #fff
@@ -300,7 +296,6 @@
     margin-bottom: 0
     width: 200px
     height: 60px
-    position: sticky
     top: 0
     left: 0
     background-color: #fff
@@ -332,6 +327,9 @@
       &__images
         img
           width: 80%
+      &__informal.proc
+        padding: 0px 16px 0px 16px
+        margin-top: 20px
 
 
 @media(max-width: 430px)
