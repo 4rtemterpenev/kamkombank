@@ -1,4 +1,20 @@
+
+function scrollToBlock(blockId) {
+    var block = document.getElementById(blockId);
+    if (block) {
+        // Получаем координаты блока относительно верха страницы
+        var blockTop = block.offsetTop;
+        // Прокручиваем страницу к этому блоку
+        window.scrollTo({
+            top: blockTop,
+            behavior: 'smooth' // Плавная прокрутка
+        });
+    }
+}
+
 const questions = document.querySelectorAll('.questions-block__heading');
+
+
 
 questions.forEach(question => {
     const arrow = question.querySelector('.questions-block__arrow');
