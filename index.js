@@ -357,7 +357,7 @@ function calculateLoan() {
     const insuranceSwitch = document.getElementById("insuranceSwitch");
 
     // Определяем годовую процентную ставку в зависимости от наличия страхования
-    const annualInterestRate = insuranceSwitch.checked ? 0.185 : 0.285;
+    const annualInterestRate = insuranceSwitch.checked ? 0.225 : 0.325;
     // Рассчитываем ежемесячный платеж по кредиту, используя ограниченную сумму
     const monthlyInterestRate = annualInterestRate / 12;
     const numberOfPayments = loanTerm;
